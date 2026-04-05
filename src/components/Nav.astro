@@ -1,0 +1,111 @@
+---
+interface Props {
+  currentPage?: 'index' | 'join';
+}
+
+const { currentPage = 'index' } = Astro.props;
+const prefix = currentPage === 'index' ? '' : '/';
+
+const navLinks = [
+  { href: `${prefix}#services`, label: 'Services' },
+  { href: `${prefix}#projects`, label: 'Projects' },
+  { href: `${prefix}#about`, label: 'About' },
+  { href: `${prefix}#contact`, label: 'Contact' },
+];
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-heartwood-charcoal/95 backdrop-blur-sm transition-all duration-300 py-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <a href="/" class="flex items-center">
+      <img src="/icon.svg" alt="Heartwood General Contracting" class="nav-logo h-10 transition-all duration-300 bg-white rounded p-1" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-heartwood-cream/80 hover:text-heartwood-tan transition-colors text-sm font-medium tracking-wide uppercase"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={`${prefix}#contact`}
+        class="bg-heartwood-brown text-heartwood-cream px-5 py-2 rounded text-sm font-medium hover:bg-heartwood-tan transition-colors"
+      >
+        Get a Quote
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden text-heartwood-cream p-2"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-heartwood-charcoal border-t border-heartwood-cream/10">
+    <div class="px-4 py-4 space-y-3">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link block text-heartwood-cream/80 hover:text-heartwood-tan transition-colors text-base py-2"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={`${prefix}#contact`}
+        class="mobile-nav-link block bg-heartwood-brown text-heartwood-cream px-5 py-3 rounded text-center font-medium hover:bg-heartwood-tan transition-colors mt-2"
+      >
+        Get a Quote
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Nav shrink on scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav?.classList.add('nav-scrolled');
+    } else {
+      nav?.classList.remove('nav-scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('hidden') === false;
+    hamburgerIcon?.classList.toggle('hidden', isOpen);
+    closeIcon?.classList.toggle('hidden', !isOpen);
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

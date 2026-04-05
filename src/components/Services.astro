@@ -1,0 +1,57 @@
+---
+const services = [
+  {
+    name: 'Kitchens',
+    description: 'Custom kitchen renovations that combine beauty and functionality.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`,
+  },
+  {
+    name: 'Bathrooms',
+    description: 'Transform your bathroom into a personal retreat.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+  },
+  {
+    name: 'Basements',
+    description: 'Unlock your basement\'s potential with expert finishing.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
+  },
+  {
+    name: 'Outdoor Living',
+    description: 'Decks, patios, and outdoor spaces for year-round enjoyment.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
+  },
+  {
+    name: 'Flooring',
+    description: 'Hardwood, laminate, vinyl — expertly installed for lasting beauty.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>`,
+  },
+  {
+    name: 'Tile Work',
+    description: 'Precision tile installation for floors, walls, and backsplashes.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h7v7H4V5zm9 0h7v7h-7V5zm-9 9h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>`,
+  },
+];
+---
+
+<section id="services" class="py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-heartwood-charcoal">
+        What We Do
+      </h2>
+      <p class="mt-4 text-heartwood-stone text-lg max-w-2xl mx-auto">
+        From concept to completion, we handle every aspect of your renovation with care and precision.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {services.map((service) => (
+        <div class="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-heartwood-cream">
+          <div class="text-heartwood-brown mb-4 group-hover:text-heartwood-tan transition-colors" set:html={service.icon} />
+          <h3 class="font-heading font-semibold text-lg text-heartwood-charcoal mb-2">{service.name}</h3>
+          <p class="text-heartwood-stone text-sm leading-relaxed">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

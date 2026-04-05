@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Join the Team | Heartwood General Contracting"
+  description="Join the Heartwood team. We're looking for skilled tradespeople who take pride in their craft. London, ON."
+>
+  <Nav currentPage="join" />
+
+  <main class="pt-24 pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-heartwood-charcoal">
+          Join the Heartwood Team
+        </h1>
+      </div>
+
+      <div class="max-w-2xl mx-auto mb-12">
+        <p class="text-heartwood-stone text-lg leading-relaxed mb-4">
+          At Heartwood, we believe great work starts with great people. We're a close-knit crew of skilled tradespeople who take pride in every cut, every joint, and every finish. If you value craftsmanship and want to grow your career with a team that has your back, we'd love to hear from you.
+        </p>
+        <p class="text-heartwood-stone text-lg leading-relaxed">
+          Based in London, Ontario, we work on residential renovations across the city and surrounding area — kitchens, bathrooms, basements, additions, and more. Whether you're an experienced tradesperson or an eager apprentice ready to learn, there's a place for you here.
+        </p>
+      </div>
+
+      <!-- Application Form -->
+      <div class="max-w-2xl mx-auto bg-white rounded-lg p-6 sm:p-8 shadow-sm border border-heartwood-cream">
+        <!-- TODO: replace JOIN_FORM_ID_HERE with your Formspree form ID for the careers form -->
+        <form action="https://formspree.io/f/JOIN_FORM_ID_HERE" method="POST" class="space-y-5">
+          <!-- Honeypot -->
+          <div class="hidden" aria-hidden="true">
+            <label for="_gotcha_join">Don't fill this out</label>
+            <input type="text" name="_gotcha" id="_gotcha_join" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div>
+            <label for="join-name" class="block text-sm font-medium text-heartwood-charcoal mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="join-name"
+              required
+              class="w-full px-4 py-3 rounded border border-heartwood-stone/30 bg-heartwood-cream/50 text-heartwood-charcoal focus:outline-none focus:ring-2 focus:ring-heartwood-brown/50 focus:border-heartwood-brown transition-colors"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="join-email" class="block text-sm font-medium text-heartwood-charcoal mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="join-email"
+                required
+                class="w-full px-4 py-3 rounded border border-heartwood-stone/30 bg-heartwood-cream/50 text-heartwood-charcoal focus:outline-none focus:ring-2 focus:ring-heartwood-brown/50 focus:border-heartwood-brown transition-colors"
+              />
+            </div>
+            <div>
+              <label for="join-phone" class="block text-sm font-medium text-heartwood-charcoal mb-1">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                id="join-phone"
+                class="w-full px-4 py-3 rounded border border-heartwood-stone/30 bg-heartwood-cream/50 text-heartwood-charcoal focus:outline-none focus:ring-2 focus:ring-heartwood-brown/50 focus:border-heartwood-brown transition-colors"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="join-trade" class="block text-sm font-medium text-heartwood-charcoal mb-1">Trade or Skill</label>
+              <input
+                type="text"
+                name="trade"
+                id="join-trade"
+                placeholder="e.g. Carpentry, Tiling, General Labour"
+                class="w-full px-4 py-3 rounded border border-heartwood-stone/30 bg-heartwood-cream/50 text-heartwood-charcoal placeholder:text-heartwood-stone/50 focus:outline-none focus:ring-2 focus:ring-heartwood-brown/50 focus:border-heartwood-brown transition-colors"
+              />
+            </div>
+            <div>
+              <label for="join-experience" class="block text-sm font-medium text-heartwood-charcoal mb-1">Years Experience</label>
+              <input
+                type="text"
+                name="experience"
+                id="join-experience"
+                placeholder="e.g. 5 years"
+                class="w-full px-4 py-3 rounded border border-heartwood-stone/30 bg-heartwood-cream/50 text-heartwood-charcoal placeholder:text-heartwood-stone/50 focus:outline-none focus:ring-2 focus:ring-heartwood-brown/50 focus:border-heartwood-brown transition-colors"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="join-message" class="block text-sm font-medium text-heartwood-charcoal mb-1">Message</label>
+            <textarea
+              name="message"
+              id="join-message"
+              rows="4"
+              placeholder="Tell us a bit about yourself and what you're looking for..."
+              class="w-full px-4 py-3 rounded border border-heartwood-stone/30 bg-heartwood-cream/50 text-heartwood-charcoal placeholder:text-heartwood-stone/50 focus:outline-none focus:ring-2 focus:ring-heartwood-brown/50 focus:border-heartwood-brown transition-colors resize-y"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-heartwood-brown text-heartwood-cream py-4 rounded font-medium text-lg hover:bg-heartwood-tan transition-colors"
+          >
+            Submit Application
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

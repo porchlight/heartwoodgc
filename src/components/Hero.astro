@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import heroBg from '../assets/projects/img_1661.jpg';
+---
+
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background image -->
+  <Image
+    src={heroBg}
+    alt=""
+    class="absolute inset-0 w-full h-full object-cover"
+    widths={[640, 1024, 1536, 2048]}
+    sizes="100vw"
+    loading="eager"
+  />
+  <!-- Subtle dark overlay for contrast -->
+  <div class="absolute inset-0 bg-heartwood-charcoal/30"></div>
+
+  <!-- Content box -->
+  <div class="relative z-10 px-4 sm:px-6 max-w-2xl mx-auto">
+    <div class="bg-heartwood-cream/90 backdrop-blur-sm rounded-lg p-8 sm:p-12 text-center shadow-lg">
+      <img
+        src="/logo.svg"
+        alt="Heartwood General Contracting"
+        class="h-20 sm:h-28 mx-auto mb-8 animate-fade-slide-up"
+      />
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-heartwood-charcoal leading-tight animate-fade-slide-up animation-delay-200">
+        Crafted with care.<br />Built to last.
+      </h1>
+
+      <p class="mt-6 text-base sm:text-lg text-heartwood-stone max-w-xl mx-auto animate-fade-slide-up animation-delay-400">
+        London, Ontario's trusted general contractor with over 20 years of renovation experience.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-slide-up animation-delay-600">
+        <a
+          href="#projects"
+          class="w-full sm:w-auto bg-heartwood-brown text-heartwood-cream px-8 py-4 rounded font-medium text-lg hover:bg-heartwood-tan transition-colors"
+        >
+          View Our Work
+        </a>
+        <a
+          href="#contact"
+          class="w-full sm:w-auto border-2 border-heartwood-brown text-heartwood-brown px-8 py-4 rounded font-medium text-lg hover:bg-heartwood-brown hover:text-heartwood-cream transition-colors"
+        >
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-white drop-shadow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>

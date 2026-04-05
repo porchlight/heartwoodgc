@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+
+// Import all project images
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/projects/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  { eager: true }
+);
+
+const allImages = Object.entries(imageModules).map(([path, mod]) => ({
+  src: mod.default,
+  filename: path.split('/').pop() || '',
+}));
+
+// Shuffle and pick 6 for the grid display
+const shuffled = [...allImages].sort(() => Math.random() - 0.5);
+const displayImages = shuffled.slice(0, 6);
+---
+
+<section id="projects" class="py-20 sm:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-heartwood-charcoal">
+        Our Work
+      </h2>
+      <p class="mt-4 text-heartwood-stone text-lg max-w-2xl mx-auto">
+        A selection of recent projects showcasing our craftsmanship across London and the surrounding area.
+      </p>
+    </div>
+
+    <!-- Grid of 6 images — clicking any opens the full gallery lightbox -->
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {displayImages.map((image, i) => (
+        <a
+          href={image.src.src}
+          class="glightbox group block rounded-lg overflow-hidden"
+          data-gallery="projects"
+        >
+          <Image
+            src={image.src}
+            alt={`Heartwood project ${i + 1}`}
+            width={600}
+            height={450}
+            class="w-full h-48 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </a>
+      ))}
+    </div>
+
+    <!-- Hidden links for remaining images so they appear in the lightbox gallery -->
+    <div class="hidden">
+      {allImages
+        .filter((img) => !displayImages.includes(img))
+        .map((image, i) => (
+          <a
+            href={image.src.src}
+            class="glightbox"
+            data-gallery="projects"
+          >
+            {image.filename}
+          </a>
+        ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import GLightbox from 'glightbox';
+  import 'glightbox/dist/css/glightbox.min.css';
+
+  GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+  });
+</script>

@@ -1,0 +1,86 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Heartwood General Contracting | London, ON',
+  description = "London Ontario's trusted general contractor. Kitchens, bathrooms, basements, additions, and more. 20+ years of experience.",
+  ogImage = '/logo.svg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD LocalBusiness Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Heartwood General Contracting",
+      "telephone": "(519) 282-4445",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "London",
+        "addressRegion": "ON",
+        "addressCountry": "CA"
+      },
+      "url": "https://heartwoodgc.com",
+      "sameAs": [
+        "https://www.facebook.com/heartwoodgc/",
+        "https://www.instagram.com/heartwoodgc/"
+      ]
+    })} />
+
+    {/* <!-- TODO: replace G-XXXXXXXXXX with your GA4 measurement ID --> */}
+    {import.meta.env.PROD && (
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQKCY45ZPK" />
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JQKCY45ZPK');
+      </script>
+    )}
+
+  </head>
+  <body class="min-h-screen antialiased">
+    <slot />
+  </body>
+</html>

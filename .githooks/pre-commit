@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Check for staged image files in src/assets/projects/
+STAGED_IMAGES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^src/assets/projects/.*\.(jpg|jpeg|png)$' || true)
+
+if [ -n "$STAGED_IMAGES" ]; then
+  echo "🖼  Optimizing staged project images..."
+  node scripts/optimize-images.js
+  if [ $? -ne 0 ]; then
+    echo "❌ Image optimization failed. Commit aborted."
+    exit 1
+  fi
+fi
