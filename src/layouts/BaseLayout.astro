@@ -1,9 +1,13 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
 }
+
+const base = import.meta.env.BASE_URL;
 
 const {
   title = 'Heartwood General Contracting | London, ON',
@@ -11,10 +15,8 @@ const {
   ogImage,
 } = Astro.props;
 
-const resolvedOgImage = ogImage || import.meta.env.BASE_URL + 'logo.svg';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-import '../styles/global.css';
+const ogImageURL = new URL(ogImage || (base + 'logo.svg'), Astro.site).toString();
 ---
 
 <!doctype html>
@@ -33,14 +35,14 @@ import '../styles/global.css';
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(resolvedOgImage, Astro.site)} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:locale" content="en_CA" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(resolvedOgImage, Astro.site)} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
