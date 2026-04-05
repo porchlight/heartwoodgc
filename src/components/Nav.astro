@@ -4,7 +4,8 @@ interface Props {
 }
 
 const { currentPage = 'index' } = Astro.props;
-const prefix = currentPage === 'index' ? '' : '/';
+const base = import.meta.env.BASE_URL;
+const prefix = currentPage === 'index' ? '' : base;
 
 const navLinks = [
   { href: `${prefix}#services`, label: 'Services' },
@@ -16,8 +17,8 @@ const navLinks = [
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-heartwood-charcoal/95 backdrop-blur-sm transition-all duration-300 py-4">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-    <a href="/" class="flex items-center">
-      <img src="/icon.svg" alt="Heartwood General Contracting" class="nav-logo h-10 transition-all duration-300 bg-white rounded p-1" />
+    <a href={base} class="flex items-center">
+      <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="Heartwood General Contracting" class="nav-logo h-10 transition-all duration-300 bg-white rounded p-1" />
     </a>
 
     <!-- Desktop Nav -->

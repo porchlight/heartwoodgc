@@ -7,7 +7,7 @@ export default defineConfig({
   // site: 'https://heartwoodgc.com',
   // and remove the base line
   site: 'https://porchlight.github.io',
-  base: '/heartwoodgc',
+  base: '/heartwoodgc/',
   output: 'static',
   integrations: [sitemap()],
   vite: {

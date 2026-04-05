@@ -80,7 +80,7 @@ The site currently deploys to `porchlight.github.io/heartwoodgc/`. When you're r
 4. In `astro.config.mjs`, change:
    ```js
    site: 'https://porchlight.github.io',
-   base: '/heartwoodgc',
+   base: '/heartwoodgc/',
    ```
    to:
    ```js
