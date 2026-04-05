@@ -63,6 +63,8 @@ Analytics only loads in production builds.
 
 ## Custom Domain on GitHub Pages
 
+The site currently deploys to `porchlight.github.io/heartwoodgc/`. When you're ready to use the custom domain:
+
 1. In your domain registrar, add these DNS records:
 
    | Type  | Host | Value               |
@@ -71,11 +73,21 @@ Analytics only loads in production builds.
    | A     | @    | 185.199.109.153     |
    | A     | @    | 185.199.110.153     |
    | A     | @    | 185.199.111.153     |
-   | CNAME | www  | heartwoodgc.github.io |
+   | CNAME | www  | porchlight.github.io |
 
 2. In the GitHub repo → Settings → Pages, enter `heartwoodgc.com` as the custom domain
 3. Enable "Enforce HTTPS"
-4. GitHub handles the SSL certificate automatically
+4. In `astro.config.mjs`, change:
+   ```js
+   site: 'https://porchlight.github.io',
+   base: '/heartwoodgc',
+   ```
+   to:
+   ```js
+   site: 'https://heartwoodgc.com',
+   ```
+   (remove the `base` line entirely)
+5. Push the change — GitHub handles the SSL certificate automatically
 
 ## TODO Locations
 

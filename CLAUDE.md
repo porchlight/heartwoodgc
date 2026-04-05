@@ -63,3 +63,4 @@ Search for `TODO: replace` in the codebase. Key ones:
 - Tailwind v4 uses `@theme` block in CSS for custom values, not `tailwind.config.js` (there is no config file).
 - The `prepare` script in package.json sets git hooks path — requires git init before `npm install`.
 - Formspree free tier: 50 submissions/month.
+- **GitHub Pages base path**: The site is currently at `porchlight.github.io/heartwoodgc/` so `astro.config.mjs` has `site: 'https://porchlight.github.io'` and `base: '/heartwoodgc'`. When the custom domain (`heartwoodgc.com`) is set up, change `site` to `'https://heartwoodgc.com'` and remove the `base` line entirely.
