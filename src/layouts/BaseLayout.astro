@@ -8,7 +8,7 @@ interface Props {
 const {
   title = 'Heartwood General Contracting | London, ON',
   description = "London Ontario's trusted general contractor. Kitchens, bathrooms, basements, additions, and more. 20+ years of experience.",
-  ogImage = '/logo.svg',
+  ogImage = `${import.meta.env.BASE_URL}logo.svg`,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
